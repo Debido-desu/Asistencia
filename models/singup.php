@@ -16,6 +16,7 @@ if (isset($_POST['select']) && isset($_POST['correo']) && isset($_POST['nombre']
     $apellidos = validar($_POST['apellidos']);
     $documento = validar($_POST['documento']);
     $contraseña = validar($_POST['password']);
+    $terminos = validar($_POST['terv']);
 
     if (empty($base)) {
         header("Location: ../singup.php?error= El perfil es requerido.");
@@ -35,13 +36,20 @@ if (isset($_POST['select']) && isset($_POST['correo']) && isset($_POST['nombre']
     } elseif (empty($contraseña)) {
         header("Location: ../singup.php?error= La contraseña es requerida.");
         exit();
+    } elseif ($terminos !== '1') {
+        header("Location: ../singup.php?error= Debe de aceptar los terminos y condiciones.");
     } else {
         //        $contraseña = md5($contraseña);
         $sqlvc = "SELECT * FROM $base WHERE correo='$correo'";
         $result = mysqli_query($conectar, $sqlvc);
 
+        $sqlvd = "SELECT * FROM $base WHERE documento='$documento'";
+        $result1 = mysqli_query($conectar, $sqlvd);
         if (mysqli_num_rows($result) === 1) {
-            header("Location: ../singup.php?error= El E-Mail ya se encuentra registrado.");
+            header("Location: ../singup.php?error= El e-Mail ya se encuentra registrado.");
+            exit();
+        } elseif (mysqli_num_rows($result1) === 1) {
+            header("Location: ../singup.php?error= El documento ya se encuentra registrado.");
             exit();
         } else {
             $sqlin = "INSERT INTO $base(nombre, documento, correo, contraseña) VALUES ('$nombre $apellidos','$documento','$correo','$contraseña')";

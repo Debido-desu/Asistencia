@@ -68,7 +68,7 @@
                         </table>
                         <table class="term">
                             <tr>
-                                <td><input type="checkbox" name="" id="terv"></td>
+                                <td><input type="checkbox" name="terv" id="terv" value="1"></td>
                                 <td>Estoy de acuerdo con los terminos de uso y politicas de privacidad.</td>
                             </tr>
                         </table>
