@@ -62,12 +62,12 @@ $result = mysqli_query($conectar, $sql);
                                 echo "<input type='hidden' value='$dato[id]' name='id'>";
                             if ($dato['motivo'] === null){
                                 echo "<select name='motivo'>
-                                <option>Seleccionar</option>
-                                <option>Problemas de salud</option>
-                                <option>Incapacidad medica</option>
-                                <option>Calamidad domestica</option>
-                                <option>Asunto familiar</option>
-                                <option>Permiso autorizado</option>
+                                <option value=''>Seleccionar</option>
+                                <option value='Problemas de salud'>Problemas de salud</option>
+                                <option value='Incapacidad medica'>Incapacidad medica</option>
+                                <option value='Calamidad domestica'>Calamidad domestica</option>
+                                <option value='Asunto familiar'>Asunto familiar</option>
+                                <option value='Permiso autorizado'>Permiso autorizado</option>
                                 </select>";
                             } else{
                                 echo $dato['motivo'];
